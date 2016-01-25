@@ -1,0 +1,13 @@
+/**
+ * 
+ */
+package com.intern.alexx.test2REST;
+import org.springframework.web.bind.annotation.*;
+/**
+ * @author malex
+ *
+ */
+@RestController
+public class Controller {
+
+}

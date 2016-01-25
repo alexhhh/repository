@@ -1,0 +1,13 @@
+/**
+ * 
+ */
+package com.intern.alexx.test1;
+
+/**
+ * @author malex
+ *
+ */
+public interface MesageService {
+
+	String getMesage();
+}

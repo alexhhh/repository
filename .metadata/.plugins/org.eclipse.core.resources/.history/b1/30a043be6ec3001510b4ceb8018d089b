@@ -1,0 +1,13 @@
+/**
+ * 
+ */
+package com.intern.alexx.test2REST;
+
+/**
+ * @author malex
+ *
+ */
+@RestController
+public class Controller {
+
+}

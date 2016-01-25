@@ -1,0 +1,16 @@
+package com.example;
+
+import org.springframework.stereotype.Controller;
+
+import ch.qos.logback.core.net.SyslogOutputStream;
+
+
+
+@Controller
+public class TheControl {
+
+	
+	 String salutaFrumos() {
+		return (" Noh Serus !");
+	}
+}
