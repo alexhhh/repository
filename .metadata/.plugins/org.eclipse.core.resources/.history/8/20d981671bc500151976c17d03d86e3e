@@ -1,0 +1,19 @@
+/**
+ * 
+ */
+package model;
+
+/**
+ * @author malex
+ *
+ */
+public class ContactImp {
+	
+	private Contact contact;
+	
+	private String telNr;
+	private String email;
+	private String site;
+	private String[] profile;
+
+}

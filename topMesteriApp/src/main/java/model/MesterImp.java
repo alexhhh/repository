@@ -1,0 +1,158 @@
+/**
+ * 
+ */
+package model;
+
+import java.util.Arrays;
+
+/**
+ * @author malex
+ *
+ */
+public class MesterImp {
+
+	private Mester mester ;
+
+	private int id;
+	private String name;
+	private String[] specialty;
+	private String description;
+	private Contact contact;
+	private String location;
+	private int price;
+	private int rating;
+	private String[] feedback;
+	
+	
+	/**
+	 * @return the mester
+	 */
+	public Mester getMester() {
+		return mester ;
+	}
+	
+	
+		/**
+	 * @return the id
+	 */
+	public int getId() {
+		return id;
+	}
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(int id) {
+		this.id = id;
+	}
+	/**
+	 * @return the name
+	 */
+	public String getName() {
+		return name;
+	}
+	/**
+	 * @param name the name to set
+	 */
+	public void setName(String name) {
+		this.name = name;
+	}
+	/**
+	 * @return the specialty
+	 */
+	public String[] getSpecialty() {
+		return specialty;
+	}
+	/**
+	 * @param specialty the specialty to set
+	 */
+	public void setSpecialty(String[] specialty) {
+		this.specialty = specialty;
+	}
+	/**
+	 * @return the description
+	 */
+	public String getDescription() {
+		return description;
+	}
+	/**
+	 * @param description the description to set
+	 */
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	/**
+	 * @return the contact
+	 */
+	public Contact getContact() {
+		return contact;
+	}
+	/**
+	 * @param contact the contact to set
+	 */
+	public void setContact(Contact contact) {
+		this.contact = contact;
+	}
+	/**
+	 * @return the location
+	 */
+	public String getLocation() {
+		return location;
+	}
+	/**
+	 * @param location the location to set
+	 */
+	public void setLocation(String location) {
+		this.location = location;
+	}
+	/**
+	 * @return the price
+	 */
+	public int getPrice() {
+		return price;
+	}
+	/**
+	 * @param price the price to set
+	 */
+	public void setPrice(int price) {
+		this.price = price;
+	}
+	/**
+	 * @return the rating
+	 */
+	public int getRating() {
+		return rating;
+	}
+	/**
+	 * @param rating the rating to set
+	 */
+	public void setRating(int rating) {
+		this.rating = rating;
+	}
+	/**
+	 * @return the feedback
+	 */
+	public String[] getFeedback() {
+		return feedback;
+	}
+	/**
+	 * @param feedback the feedback to set
+	 */
+	public void setFeedback(String[] feedback) {
+		this.feedback = feedback;
+	}
+
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "MesterImp [mester=" + mester + ", id=" + id + ", name=" + name + ", specialty="
+				+ Arrays.toString(specialty) + ", description=" + description + ", contact=" + contact + ", location="
+				+ location + ", price=" + price + ", rating=" + rating + ", feedback=" + Arrays.toString(feedback)
+				+ "]";
+	}
+		
+		
+		
+}

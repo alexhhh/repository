@@ -1,0 +1,13 @@
+/**
+ * 
+ */
+package com.intern.alexx;
+
+/**
+ * @author malex
+ *
+ */
+@org.springframework.stereotype.Controller
+public class theController {
+
+}

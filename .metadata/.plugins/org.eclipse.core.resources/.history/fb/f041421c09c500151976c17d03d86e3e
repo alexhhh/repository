@@ -1,0 +1,15 @@
+package comm.intern.alexx.test3REST;
+
+
+import org.springframework.context.annotation.Configuration;
+/**
+ * Hello world!
+ *
+ */
+
+
+
+public class App 
+{
+  
+}

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aop-reference-model>
+<aop-project name="test4"/>
+<aop-project name="test5"/>
+<aop-project name="test6"/>
+</aop-reference-model>

@@ -1,0 +1,12 @@
+/**
+ * 
+ */
+package model;
+
+/**
+ * @author malex
+ *
+ */
+public interface Mester {
+
+}

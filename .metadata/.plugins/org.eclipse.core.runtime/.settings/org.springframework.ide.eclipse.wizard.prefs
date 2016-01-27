@@ -1,0 +1,15 @@
+eclipse.preferences.version=1
+org.springframework.ide.eclipse.wizard.gettingstarted.boot.PopularityTracker.actuator=3
+org.springframework.ide.eclipse.wizard.gettingstarted.boot.PopularityTracker.restdocs=1
+org.springframework.ide.eclipse.wizard.gettingstarted.boot.PopularityTracker.web=3
+org.springframework.ide.eclipse.wizard.gettingstarted.boot.PreferredSelections.artifactId=testSpring
+org.springframework.ide.eclipse.wizard.gettingstarted.boot.PreferredSelections.bootVersion=1.4.0.BUILD-SNAPSHOT
+org.springframework.ide.eclipse.wizard.gettingstarted.boot.PreferredSelections.description=Demo project for Spring Boot
+org.springframework.ide.eclipse.wizard.gettingstarted.boot.PreferredSelections.groupId=com.intern.alexx
+org.springframework.ide.eclipse.wizard.gettingstarted.boot.PreferredSelections.javaVersion=1.8
+org.springframework.ide.eclipse.wizard.gettingstarted.boot.PreferredSelections.language=java
+org.springframework.ide.eclipse.wizard.gettingstarted.boot.PreferredSelections.name=test6
+org.springframework.ide.eclipse.wizard.gettingstarted.boot.PreferredSelections.packageName=com.intern.alexx
+org.springframework.ide.eclipse.wizard.gettingstarted.boot.PreferredSelections.packaging=jar
+org.springframework.ide.eclipse.wizard.gettingstarted.boot.PreferredSelections.type=MAVEN
+org.springframework.ide.eclipse.wizard.gettingstarted.boot.PreferredSelections.version=0.0.1-SNAPSHOT

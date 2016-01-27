@@ -1,0 +1,24 @@
+/**
+ * 
+ */
+package model;
+
+/**
+ * @author malex
+ *
+ */
+public class Mester {
+
+	
+		private int id;
+		private String name;
+		private String[] specialty;
+		private String description;
+		private Contact contact;
+		private String location;
+		private int price;
+		private int rating;
+		
+		
+		
+}
