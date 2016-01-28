@@ -8,3 +8,15 @@
 1453914809018	Rename type 'Mester'
 1453914828121	Delete element
 1453914852887	Delete element
+1453969074654	Delete elements
+1453969104210	Rename type 'ContactImp'
+1453969476888	Rename type 'MesterImp'
+1453996377523	Rename type 'MesterServiceImp'
+1453997728035	Delete element
+1453999970664	Rename type 'Connection'
+1454000009458	Rename package 'configuration'
+1454000028186	Rename package 'controller'
+1454000034386	Rename package 'manager'
+1454000042148	Rename package 'model'
+1454000049595	Rename package 'repository'
+1454000055863	Rename package 'services'

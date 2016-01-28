@@ -20,7 +20,7 @@
 	</section>
 	<section name="NewClassWizardPage">
 		<item value="false" key="create_constructor"/>
-		<item value="false" key="create_unimplemented"/>
+		<item value="true" key="create_unimplemented"/>
 	</section>
 	<section name="OptionalMessageDialog.hide.">
 		<item value="true" key="org.eclipse.jdt.ui.typecomment.deprecated"/>
@@ -52,7 +52,7 @@
 	<section name="javadoc">
 		<item value="public" key="access"/>
 		<item value="false" key="noindex"/>
-		<item value="D:\malex\workspace\test2REST\javadoc.xml" key="antpath"/>
+		<item value="D:\malex\workspace\topMesteriApp\javadoc.xml" key="antpath"/>
 		<item value="false" key="nodeprecatedlist"/>
 		<item value="true" key="use"/>
 		<item value="true" key="author"/>
@@ -64,17 +64,68 @@
 		<item value="true" key="version"/>
 		<item value="" key="docletname"/>
 		<item value="true" key="splitindex"/>
-		<item value="false" key="fromStandard"/>
+		<item value="true" key="fromStandard"/>
 		<item value="false" key="notree"/>
-		<item value="D:\malex\workspace\test2REST\doc" key="destdir"/>
+		<item value="D:\malex\workspace\topMesteriApp\doc" key="destdir"/>
 		<item value="false" key="openinbrowser"/>
 		<section name="projects">
+			<section name="test4">
+				<item value="D:\malex\workspace\test4\javadoc.xml" key="antpath"/>
+				<item value="D:\malex\workspace\test4\doc" key="destdir"/>
+				<item value="" key="href"/>
+			</section>
+			<section name="test5">
+				<item value="D:\malex\workspace\test5\javadoc.xml" key="antpath"/>
+				<item value="D:\malex\workspace\test5\doc" key="destdir"/>
+				<item value="" key="href"/>
+			</section>
+			<section name="mesteriApp">
+				<item value="D:\malex\workspace\mesteriApp\javadoc.xml" key="antpath"/>
+				<item value="D:\malex\workspace\mesteriApp\doc" key="destdir"/>
+				<item value="" key="href"/>
+			</section>
+			<section name="test6">
+				<item value="D:\malex\workspace\test6\javadoc.xml" key="antpath"/>
+				<item value="D:\malex\workspace\test6\doc" key="destdir"/>
+				<item value="" key="href"/>
+			</section>
+			<section name="topMesteriApp">
+				<item value="D:\malex\workspace\topMesteriApp\javadoc.xml" key="antpath"/>
+				<item value="D:\malex\workspace\topMesteriApp\doc" key="destdir"/>
+				<item value="" key="href"/>
+			</section>
+			<section name="test7">
+				<item value="D:\malex\workspace\test7\javadoc.xml" key="antpath"/>
+				<item value="D:\malex\workspace\test7\doc" key="destdir"/>
+				<item value="" key="href"/>
+			</section>
+			<section name="test3REST">
+				<item value="D:\malex\workspace\test3REST\javadoc.xml" key="antpath"/>
+				<item value="D:\malex\workspace\test3REST\doc" key="destdir"/>
+				<item value="" key="href"/>
+			</section>
+			<section name="test2REST">
+				<item value="D:\malex\workspace\test2REST\javadoc.xml" key="antpath"/>
+				<item value="D:\malex\workspace\test2REST\doc" key="destdir"/>
+				<item value="" key="href"/>
+			</section>
+			<section name="RemoteSystemsTempFiles">
+				<item value="D:\malex\workspace\RemoteSystemsTempFiles\javadoc.xml" key="antpath"/>
+				<item value="D:\malex\workspace\RemoteSystemsTempFiles\doc" key="destdir"/>
+				<item value="" key="href"/>
+			</section>
+			<section name="test1">
+				<item value="D:\malex\workspace\test1\javadoc.xml" key="antpath"/>
+				<item value="D:\malex\workspace\test1\doc" key="destdir"/>
+				<item value="" key="href"/>
+			</section>
 		</section>
 	</section>
 	<section name="SourceActionDialog.methods">
 		<item value="true" key="IgnoreDefault"/>
 		<item value="false" key="SynchronizedModifier"/>
-		<item value="false" key="Comments"/>
+		<item value="true" key="Comments"/>
+		<item value="2" key="InsertPosition.v2"/>
 		<item value="1" key="VisibilityModifier"/>
 		<item value="0" key="StringStyle"/>
 		<item value="0" key="ToStringTemplateSelected"/>
@@ -97,13 +148,16 @@
 	</section>
 	<section name="JavadocWizardDialog">
 		<item value="616" key="DIALOG_WIDTH"/>
-		<item value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|5|0|Segoe UI" key="DIALOG_FONT_NAME"/>
+		<item value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI" key="DIALOG_FONT_NAME"/>
 		<item value="567" key="DIALOG_HEIGHT"/>
 		<item value="172" key="DIALOG_X_ORIGIN"/>
 		<item value="142" key="DIALOG_Y_ORIGIN"/>
 	</section>
 	<section name="BuildPathsPropertyPage">
 		<item value="3" key="pageIndex"/>
+	</section>
+	<section name="NewPackageWizardPage">
+		<item value="false" key="create_package_info_java"/>
 	</section>
 	<section name="completion_proposal_size">
 		<item value="250" key="size.y"/>

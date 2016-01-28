@@ -50,9 +50,10 @@
 	</section>
 	<section name="MavenProjectWizardLocationPage">
 		<list key="location">
+			<item value="D:\malex\workspace"/>
+			<item value="D:\malex\workspace\mesteriApp\pom.xml"/>
 			<item value="D:\malex\workspace\"/>
 			<item value="D:\malex\workspace\test1"/>
-			<item value="D:\malex\workspace"/>
 			<item value="D:\malex\workspace\test2REST"/>
 			<item value="D:\malex\workspace\test1\src\test\java\com\intern\alexx\test1\AppTest.java"/>
 		</list>
@@ -67,15 +68,13 @@
 	</section>
 	<section name="Maven2ProjectWizardArchifactPage">
 		<list key="package">
-			<item value="comm.intern.alexx.test7"/>
-			<item value="comm.intern.alexx.test3REST"/>
+			<item value="com.intern.alexx.mesteriiii"/>
 		</list>
 		<list key="groupId">
-			<item value="comm.intern.alexx"/>
+			<item value="com.intern.alexx"/>
 		</list>
 		<list key="artifactId">
-			<item value="test7"/>
-			<item value="test3REST"/>
+			<item value="mesteriiii"/>
 		</list>
 		<list key="projectNameTemplate">
 			<item value="[artifactId]"/>

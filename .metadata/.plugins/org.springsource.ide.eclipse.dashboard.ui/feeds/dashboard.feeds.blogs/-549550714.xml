@@ -5,7 +5,94 @@
   <link rel="self" href="https://spring.io/blog.atom" />
   <id>http://spring.io/blog.atom</id>
   <icon>https://spring.io/favicon.ico</icon>
-  <updated>2016-01-27T04:44:00Z</updated>
+  <updated>2016-01-28T13:07:00Z</updated>
+  <entry>
+    <title>AngularJS - Escaping the Expression Sandbox for XSS</title>
+    <link rel="alternate" href="https://spring.io/blog/2016/01/28/angularjs-escaping-the-expression-sandbox-for-xss" />
+    <category term="engineering" label="Engineering" />
+    <author>
+      <name>Rob Winch</name>
+    </author>
+    <id>tag:spring.io,2016-01-27:2358</id>
+    <updated>2016-01-28T13:07:00Z</updated>
+    <content type="html">&lt;h1&gt;&lt;a href="#introduction" class="anchor" name="introduction"&gt;&lt;/a&gt;Introduction&lt;/h1&gt;
+&lt;p&gt;&lt;a href="https://angularjs.org/"&gt;AngularJS&lt;/a&gt; is a popular JavaScript framework that allows embedding &lt;a href="https://code.angularjs.org/1.4.9/docs/guide/expression"&gt;expressions&lt;/a&gt; within double curly braces. &lt;a href="https://code.angularjs.org/1.4.9/docs/guide/expression#example"&gt;For example&lt;/a&gt;, the expression &lt;code&gt;1+2={{1+2}}&lt;/code&gt; will render as &lt;code&gt;1+2=3&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;This means that if the server echos out user input that contains double curly braces, the user can perform a XSS exploit using Angular expressions.&lt;/p&gt;&lt;h1&gt;&lt;a href="#writing-user-input-server-side" class="anchor" name="writing-user-input-server-side"&gt;&lt;/a&gt;Writing User Input Server Side&lt;/h1&gt;
+&lt;p&gt;Let&amp;rsquo;s explore a page that is safely HTML encoding user input. In our example below, we use &lt;a href="http://www.thymeleaf.org/"&gt;Thymeleaf&lt;/a&gt; to HTML encode and then output the attribute &lt;code&gt;username&lt;/code&gt; to the text of the div of our page.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="prettyprint html"&gt;&amp;lt;html xmlns:th=&amp;quot;http://www.thymeleaf.org&amp;quot;&amp;gt;&#xD;
+&amp;lt;head&amp;gt;&#xD;
+&amp;lt;title&amp;gt;AngularJS - Escaping the Expression Sandbox&amp;lt;/title&amp;gt;&#xD;
+&amp;lt;/head&amp;gt;&#xD;
+&amp;lt;body&amp;gt;&#xD;
+&amp;lt;div th:text=&amp;quot;${username}&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;&#xD;
+&amp;lt;/body&amp;gt;&#xD;
+&amp;lt;/html&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;If username is &lt;code&gt;&amp;lt;script&amp;gt;alert(&amp;#39;Rob&amp;#39;)&amp;lt;/script&amp;gt;&lt;/code&gt; the output might look like:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="prettyprint html"&gt;&amp;lt;html xmlns:th=&amp;quot;http://www.thymeleaf.org&amp;quot;&amp;gt;&#xD;
+&amp;lt;head&amp;gt;&#xD;
+&amp;lt;title&amp;gt;AngularJS - Escaping the Expression Sandbox&amp;lt;/title&amp;gt;&#xD;
+&amp;lt;/head&amp;gt;&#xD;
+&amp;lt;body&amp;gt;&#xD;
+&amp;lt;div&amp;gt;&amp;amp;lt;script&amp;amp;gt;alert(&amp;amp;#39;Rob&amp;amp;#39;)&amp;amp;lt;/script&amp;amp;gt;&amp;lt;/div&amp;gt;&#xD;
+&amp;lt;/body&amp;gt;&#xD;
+&amp;lt;/html&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;You will notice that the output is properly HTML encoded. This means our application is currently safe from XSS attacks.&lt;/p&gt;&lt;h1&gt;&lt;a href="#adding-angularjs" class="anchor" name="adding-angularjs"&gt;&lt;/a&gt;Adding AngularJS&lt;/h1&gt;
+&lt;p&gt;Our application is currently secure against XSS attacks. Let&amp;rsquo;s update the application to use AngularJS&lt;/p&gt;
+&lt;pre&gt;&lt;code class="prettyprint html"&gt;&amp;lt;html xmlns:th=&amp;quot;http://www.thymeleaf.org&amp;quot;&amp;gt;&#xD;
+&amp;lt;head&amp;gt;&#xD;
+&amp;lt;title&amp;gt;Angular Expression - safe&amp;lt;/title&amp;gt;&#xD;
+&amp;lt;script src=&amp;quot;angular-1.4.8.min.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;&#xD;
+&amp;lt;/head&amp;gt;&#xD;
+&amp;lt;body ng-app&amp;gt;&#xD;
+&amp;lt;div th:text=&amp;quot;${username}&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;&#xD;
+&amp;lt;/body&amp;gt;&#xD;
+&amp;lt;/html&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;You will notice two changes:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;We include added &lt;code&gt;angular-1.4.8.min.js&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;We added &lt;code&gt;ng-app&lt;/code&gt; to the body element&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Our application is now vulnerable to XSS attacks, but how can we exploit it? The big clue should be our introduction to Angular expressions. What would happen with a username of &lt;code&gt;1+2={{1+2}}&lt;/code&gt;? The result would be:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="prettyprint html"&gt;&amp;lt;html&amp;gt;&#xD;
+&amp;lt;head&amp;gt;&#xD;
+&amp;lt;title&amp;gt;Angular Expression - safe&amp;lt;/title&amp;gt;&#xD;
+&amp;lt;script src=&amp;quot;angular-1.4.8.min.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;&#xD;
+&amp;lt;/head&amp;gt;&#xD;
+&amp;lt;body ng-app=&amp;quot;&amp;quot;&amp;gt;&#xD;
+&amp;lt;div&amp;gt;1+2={{1+2}}&amp;lt;/div&amp;gt;&#xD;
+&amp;lt;/body&amp;gt;&#xD;
+&amp;lt;/html&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Angular would then update the DOM to be:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="prettyprint html"&gt;&amp;lt;html&amp;gt;&#xD;
+&amp;lt;head&amp;gt;&#xD;
+&amp;lt;title&amp;gt;Angular Expression - safe&amp;lt;/title&amp;gt;&#xD;
+&amp;lt;script src=&amp;quot;angular-1.4.8.min.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;&#xD;
+&amp;lt;/head&amp;gt;&#xD;
+&amp;lt;body ng-app=&amp;quot;&amp;quot;&amp;gt;&#xD;
+&amp;lt;div&amp;gt;1+2=3&amp;lt;/div&amp;gt;&#xD;
+&amp;lt;/body&amp;gt;&#xD;
+&amp;lt;/html&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We could try a username of &lt;code&gt;{{alert(&amp;#39;Rob&amp;#39;)}}&lt;/code&gt;, but that would be blocked by &lt;a href="https://code.angularjs.org/1.4.9/docs/guide/security#expression-sandboxing"&gt;Expression Sandboxing&lt;/a&gt;. At this point you might think that we are safe. However, despite appearing in the security section of the documention, Expression Sandboxing is not intended to provide security.&lt;/p&gt;
+&lt;p&gt;More concretely, the documentation states the following about &lt;a href="https://code.angularjs.org/1.4.9/docs/guide/security#mixing-client-side-and-server-side-templates"&gt;Mixing client-side and server-side templates&lt;/a&gt;:&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;In general, we recommend against this because it can create unintended XSS vectors.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Ultimately, this means that if you allow user input to be rendered in templates on the server side, the application is vulnerable to XSS attacks. Let&amp;rsquo;s take a look at a concrete example.&lt;/p&gt;&lt;h1&gt;&lt;a href="#escaping-the-expression-sandbox" class="anchor" name="escaping-the-expression-sandbox"&gt;&lt;/a&gt;Escaping the Expression Sandbox&lt;/h1&gt;
+&lt;p&gt;If our payload is sandboxed, how can we provide a valid XSS exploit?&lt;br/&gt;What would happen if our username was:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="prettyprint javascript"&gt;{{&#xD;
+&amp;#39;a&amp;#39;.constructor.prototype.charAt=[].join;&#xD;
+eval(&amp;#39;x=1} } };alert(1)//&amp;#39;);&#xD;
+}}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;By overriding the native function &lt;code&gt;charAt&lt;/code&gt; we can bypass Angular&amp;rsquo;s Expression Sandbox and allow us to execute &lt;code&gt;alert(1)&lt;/code&gt;. Refer to &lt;a href="http://blog.portswigger.net/2016/01/xss-without-html-client-side-template.html"&gt;XSS without HTML: Client-Side Template Injection with AngularJS&lt;/a&gt; for complete details of how the exploit works.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;NOTE&lt;/strong&gt;: This payload targets Chrome and AngularJS 1.4.8. It is not known to work in other browsers.&lt;/p&gt;&lt;h1&gt;&lt;a href="#conclusion" class="anchor" name="conclusion"&gt;&lt;/a&gt;Conclusion&lt;/h1&gt;
+&lt;p&gt;Allowing the server to echo user input into an Angular template will expose your application to XSS exploits. More generally, you should not mix server side rendering of user input and client side templates. You can find a sample that accompanies this blog post at &lt;a href="https://github.com/rwinch/angularjs-escaping-expression-sandbox"&gt;rwinch/angularjs-escaping-expression-sandbox&lt;/a&gt;.&lt;/p&gt;</content>
+  </entry>
   <entry>
     <title>Introducing Spring Cloud Task</title>
     <link rel="alternate" href="https://spring.io/blog/2016/01/27/introducing-spring-cloud-task" />
@@ -533,16 +620,5 @@ bash runAcceptanceTests.sh -t SLEUTH -k 1
     <id>tag:spring.io,2016-01-05:2341</id>
     <updated>2016-01-04T17:05:00Z</updated>
     <content type="html">&lt;p&gt;Recorded at SpringOne2GX 2015.&lt;br/&gt;Track: Core Spring&lt;br/&gt;Speakers: Adam Koblentz and Josh Long&lt;br/&gt;Slides: &lt;a href="http://www.slideshare.net/SpringCentral/springboot-jrebel-cf"&gt;http://www.slideshare.net/SpringCentral/springboot-jrebel-cf&lt;/a&gt;&lt;br/&gt;Abstract:&lt;br/&gt;Spring Boot, the new convention-over-configuration centric framework from the Spring team at Pivotal, marries Spring&amp;rsquo;s flexibility with conventional, common sense defaults to make application development not just fly, but pleasant! Spring Boot gives you a huge leg up over normal starter projects, now let&amp;rsquo;s give you another boost by adding JRebel. With JRebel, the average Java developer saves over 1 work-month per year by using JRebel to skip rebuild, restart, and redeploys of their application. With Boot and JRebel, developers can get up and running and then stay focused on doing what&amp;rsquo;s important: writing kick-ass applications. In this session, developers will learn about spring boot and how to go from nothing to a fully functioning app in no time, then see how they can keep the app up and reload code changes instantly without redeploying and stay in the flow.&lt;br/&gt;&lt;iframe width="560" height="315" src="https://www.youtube.com/embed/HoTzj6sjQ6Q" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;&lt;/p&gt;</content>
-  </entry>
-  <entry>
-    <title>SpringOne2GX 2015 replay: Data Driven Action: a primer on Data Science</title>
-    <link rel="alternate" href="https://spring.io/blog/2016/01/04/springone2gx-2015-replay-data-driven-action-a-primer-on-data-science" />
-    <category term="news" label="News and Events" />
-    <author>
-      <name>Pieter Humphrey</name>
-    </author>
-    <id>tag:spring.io,2016-01-05:2340</id>
-    <updated>2016-01-04T16:59:00Z</updated>
-    <content type="html">&lt;p&gt;Recorded at SpringOne2GX 2015.&lt;br/&gt;Track: Big Data&lt;br/&gt;Speakers: Sarah Aerni, Srivatsan Ramanujam, Jarrod Vawdrey&lt;br/&gt;Slides: &lt;a href="http://www.slideshare.net/SpringCentral/data-driven-action-a-primer-on-data-science"&gt;http://www.slideshare.net/SpringCentral/data-driven-action-a-primer-on-data-science&lt;/a&gt;&lt;br/&gt;Abstract:&lt;br/&gt;In all industries, as software is eating the world, data is feeding software. However, to truly get value out of the data being generated, it must be analyzed and made actionable. Transformation in many industries actually means precisely this, data-driven action. From creating new television shows, to smart devices that help make your life easy, save precious limited resources, or protect your health, ingesting the data and building models are crucial to success.&lt;br/&gt;This session will focus on examples of how these models are built. What is required to build a model? How does data need to be processed? What do you have to consider to make your model effective? And finally what tools do I use to build these models?&lt;br/&gt;In this session, we will address these questions through illustrative use cases using open-source technologies varying from medical, text and sensor data, from three different speakers:&lt;br/&gt;- Approaches and Open Source Tools for Wrangling and Modeling Massive Datasets&lt;br/&gt;- Scaling Java Applications for NLP on MPP through PL/Java&lt;br/&gt;- A Scalable Framework For Realtime Monitoring &amp;amp; Prediction Of Sensor Readings&lt;br/&gt;&lt;iframe width="560" height="315" src="https://www.youtube.com/embed/BZLvKbtnCpw" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;&lt;/p&gt;</content>
   </entry>
 </feed>
