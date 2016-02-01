@@ -20,3 +20,11 @@
 1454000042148	Rename package 'model'
 1454000049595	Rename package 'repository'
 1454000055863	Rename package 'services'
+1454055073463	Rename resource 'connbean.xml'
+1454055421414	Delete element
+1454065375968	Rename compilation unit 'Mester.java'
+1454069332447	Rename resource 'appContext.xml'
+1454069775302	Delete element
+1454070501944	Delete element
+1454071007506	Rename resource 'appContext-servlet.xml'
+1454071323612	Move file

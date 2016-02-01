@@ -1,8 +1,0 @@
-<bean id="dataSource" class="com.intern.alexx.configuration.Configuration">
-    <property name="Configuration" value="com.mysql.jdbc.Driver"/>
-    <property name="url" value="jdbc:mysql://localhost:3306"/>
-    <property name="username" value="root"/>
-    <property name="password" value="root"/>
-</bean>
-
- 
