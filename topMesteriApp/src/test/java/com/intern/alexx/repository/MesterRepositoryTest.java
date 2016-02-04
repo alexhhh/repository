@@ -23,7 +23,8 @@ public class MesterRepositoryTest {
 
 		Mester mester = createMester();
 		mesterRepository.insert(mester);
-		Mester dbMester = mesterRepository.getById(22);
+		
+		Mester dbMester = mesterRepository.getById(mester);
 		assertNotNull(dbMester);
 		assertEquals(mester.getLocation(), dbMester.getLocation());
 
@@ -33,18 +34,34 @@ public class MesterRepositoryTest {
 
 		Mester mester = new Mester();
 		
-		mester.setFirstName("Ion");
-		mester.setLastName("Pop");
-		mester.setLocation("Cluj");
+		mester.setFirstName("Bogdan");
+		mester.setLastName("Popescu");
+		mester.setLocation("Tibet");
 		return mester;
-	}
+	} 
 	
 	@Test
 	public void canDeleteMesterFromDB(){
-		
-		Mester dbMester = mesterRepository.getById(28);
+		Mester mester = new Mester();
+		Mester dbMester = mesterRepository.getById(mester);
 		assertNotNull(dbMester);
-		mesterRepository.delete(dbMester);
+		mesterRepository.delete(mester);
+	 
+	}
+	
+	
+	@Test
+	public void canUpdateMesterFromDb(){
+		// review
+		Mester mester = new Mester();
+		Mester dbMester = mesterRepository.getById(mester);
+		assertNotNull(dbMester);
+		mesterRepository.update(mester);
+		assertEquals(mester.getLocation(), dbMester.getLocation());
+	}
+	
+	@Test
+	public void canReturnAllFromDb(){
 		
 		
 	}

@@ -7,36 +7,24 @@ package com.intern.alexx.model;
  * @author malex
  *
  */
-public class Speciality {
+public class Speciality extends BaseModel{
 
 	
-	private int idSpeciality;
+	
 	private String specialityName;
 	
-
-	/**
-	 * @return the idSpeciality
-	 */
-	public int getIdSpeciality() {
-		return idSpeciality;
+	public Speciality (){}
+	
+	public Speciality (int idSpeciality, String specialityName){
+		this.specialityName=specialityName;
 	}
-
-
-	/**
-	 * @param idSpeciality the idSpeciality to set
-	 */
-	public void setIdSpeciality(int idSpeciality) {
-		this.idSpeciality = idSpeciality;
-	}
-
-
+ 
 	/**
 	 * @return the specialityName
 	 */
 	public String getSpecialityName() {
 		return specialityName;
 	}
-
 
 	/**
 	 * @param specialityName the specialityName to set
@@ -45,7 +33,16 @@ public class Speciality {
 		this.specialityName = specialityName;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Speciality [idSpeciality=" + getId()+"specialityName=" + specialityName   + "]";
+	}
 
-	public Speciality(){}
+
+
+	 
 	
 }

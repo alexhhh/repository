@@ -2,15 +2,13 @@
  * 
  */
 package com.intern.alexx.model;
- 
 
 /**
  * @author malex
  *
  */
-public class Mester {
+public class Mester extends BaseModel {
 
-	private int idMester;
 	private String firstName;
 	private String lastName;
 	private String location;
@@ -18,36 +16,19 @@ public class Mester {
 	private Contact contact;
 	private Speciality speciality;
 	private ReviewMester reviewMester;
-	
+
 	public Mester() {
 
 	}
 
 	public Mester(int idMester, String firstName, String lastName, String description, String location) {
-		// TODO Auto-generated constructor stub
-		this.idMester=idMester;
-		this.firstName=firstName;
-		this.lastName=lastName;
-		this.description=description;
-		this.location=location;
-	}
 
-	/**
-	 * @return the id
-	 */
-	public int getIdMester() {
-		return idMester;
+		super(idMester);
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.description = description;
+		this.location = location;
 	}
-
-	/**
-	 * @param id
-	 *            the id to set
-	 */
-	public void setIdMester(int idMester) {
-		this.idMester = idMester;
-	}
-
- 
 
 	/**
 	 * @return the firstName
@@ -57,7 +38,8 @@ public class Mester {
 	}
 
 	/**
-	 * @param firstName the firstName to set
+	 * @param firstName
+	 *            the firstName to set
 	 */
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
@@ -77,7 +59,6 @@ public class Mester {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-
 
 	/**
 	 * @return the description
@@ -109,7 +90,6 @@ public class Mester {
 		this.location = location;
 	}
 
-	
 	/**
 	 * @return the contact
 	 */
@@ -118,7 +98,8 @@ public class Mester {
 	}
 
 	/**
-	 * @param contact the contact to set
+	 * @param contact
+	 *            the contact to set
 	 */
 	public void setContact(Contact contact) {
 		this.contact = contact;
@@ -132,7 +113,8 @@ public class Mester {
 	}
 
 	/**
-	 * @param speciality the speciality to set
+	 * @param speciality
+	 *            the speciality to set
 	 */
 	public void setSpeciality(Speciality speciality) {
 		this.speciality = speciality;
@@ -146,20 +128,22 @@ public class Mester {
 	}
 
 	/**
-	 * @param reviewMester the reviewMester to set
+	 * @param reviewMester
+	 *            the reviewMester to set
 	 */
 	public void setReviewMester(ReviewMester reviewMester) {
 		this.reviewMester = reviewMester;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
 	public String toString() {
-		return "Mester [idMester=" + idMester + ", fisrtName=" + firstName + ", lastName=" + lastName + ", description="
+		return "Mester [idMester=" + getId() + ", fisrtName=" + firstName + ", lastName=" + lastName + ", description="
 				+ description + ", location=" + location + "]";
 	}
-	
-	
+
 }

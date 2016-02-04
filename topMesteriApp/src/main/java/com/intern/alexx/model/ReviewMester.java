@@ -7,27 +7,20 @@ package com.intern.alexx.model;
  * @author malex
  *
  */
-public class ReviewMester {
+public class ReviewMester extends BaseModel {
 
-	private int idReviewMester;
 	private String price;
 	private int rating;
 	private String feedback;
-	
-	public ReviewMester(){}
 
-	/**
-	 * @return the idReviewMester
-	 */
-	public int getIdReviewMester() {
-		return idReviewMester;
+	public ReviewMester() {
 	}
 
-	/**
-	 * @param idReviewMester the idReviewMester to set
-	 */
-	public void setIdReviewMester(int idReviewMester) {
-		this.idReviewMester = idReviewMester;
+	public ReviewMester(int idReviewMester, String price, int rating, String feedback) {
+		super(idReviewMester);
+		this.feedback = feedback;
+		this.rating = rating;
+		this.price = price;
 	}
 
 	/**
@@ -38,7 +31,8 @@ public class ReviewMester {
 	}
 
 	/**
-	 * @param price the price to set
+	 * @param price
+	 *            the price to set
 	 */
 	public void setPrice(String price) {
 		this.price = price;
@@ -52,7 +46,8 @@ public class ReviewMester {
 	}
 
 	/**
-	 * @param rating the rating to set
+	 * @param rating
+	 *            the rating to set
 	 */
 	public void setRating(int rating) {
 		this.rating = rating;
@@ -66,10 +61,21 @@ public class ReviewMester {
 	}
 
 	/**
-	 * @param feedback the feedback to set
+	 * @param feedback
+	 *            the feedback to set
 	 */
 	public void setFeedback(String feedback) {
 		this.feedback = feedback;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "ReviewMester [idReviewMester=" + getId() + ", price=" + price + ", rating=" + rating + ", feedback="
+				+ feedback + "]";
+	}
 }
