@@ -6,8 +6,8 @@ package com.intern.alexx.repository;
 
 import com.intern.alexx.model.Client;
 import com.intern.alexx.model.Mester;
+import com.intern.alexx.model.MesterSearchCriteria;
 import com.intern.alexx.model.ReviewMester;
-import com.intern.alexx.repository.impl.MesterSearchCriteria;
  
 
 /**

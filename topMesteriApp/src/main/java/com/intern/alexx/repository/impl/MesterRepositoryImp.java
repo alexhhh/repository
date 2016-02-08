@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.intern.alexx.model.Mester;
+import com.intern.alexx.model.MesterSearchCriteria;
 import com.intern.alexx.repository.MesterRepository;
 
 @Component

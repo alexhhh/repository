@@ -14,54 +14,67 @@ import com.intern.alexx.repository.MesterRepository;
 public class MyPage {
 
 	private List<Mester> contentPage ;
-	private int pageSize;
-	private int pageNumber;
-	
-	 
-	
-	public MyPage(List<Mester> contentPage, int pageSize, int pageNumber ){
-		this.contentPage=contentPage;
-		this.pageNumber=pageNumber;
-		this.pageSize=pageSize;
-	}
+	private Integer totalRezults;
+	private Integer pageSize;
+	private Integer pageNumber;
 	
 	
-
 	
-	public List <?> getPage(List<Mester> contentMesteri) {
-		contentPage = contentMesteri;
-		int index= pageSize*(pageNumber-1);
-		int i=0;
-		
-		Iterator<Mester> it = contentPage.iterator();
-		
-		while (i<index && it.hasNext()){
-			it.next();
-			it.remove();
-			i++;
-		}
-		while (it.hasNext() && i<index+pageSize){
-			it.next();
-			i++;
-		}
-		while(it.hasNext()){
-			it.next();
-			it.remove();
-		}
-		
- 
+	/**
+	 * @return the contentPage
+	 */
+	public List<Mester> getContentPage() {
 		return contentPage;
 	}
-
-	public MyPage getPreviousPage() {
-		
-		return null;
+	/**
+	 * @param contentPage the contentPage to set
+	 */
+	public void setContentPage(List<Mester> contentPage) {
+		this.contentPage = contentPage;
 	}
+	/**
+	 * @return the totalRezults
+	 */
+	public Integer getTotalRezults() {
+		return totalRezults;
+	}
+	/**
+	 * @param totalRezults the totalRezults to set
+	 */
+	public void setTotalRezults(Integer totalRezults) {
+		this.totalRezults = totalRezults;
+	}
+	/**
+	 * @return the pageSize
+	 */
+	public Integer getPageSize() {
+		return pageSize;
+	}
+	/**
+	 * @param pageSize the pageSize to set
+	 */
+	public void setPageSize(Integer pageSize) {
+		this.pageSize = pageSize;
+	}
+	/**
+	 * @return the pageNumber
+	 */
+	public Integer getPageNumber() {
+		return pageNumber;
+	}
+	/**
+	 * @param pageNumber the pageNumber to set
+	 */
+	public void setPageNumber(Integer pageNumber) {
+		this.pageNumber = pageNumber;
+	}
+	
+	 
+
 
 	
-	public MyPage getNextpage() {
-		 
-		return null;
-	}
 
+ 
+
+ 
 }

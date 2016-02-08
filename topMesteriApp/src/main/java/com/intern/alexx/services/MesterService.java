@@ -9,7 +9,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import com.intern.alexx.model.Mester;
-import com.intern.alexx.repository.impl.MesterSearchCriteria;
+import com.intern.alexx.model.MesterSearchCriteria;
 import com.intern.alexx.services.impl.MyPage;;
 
 /**
@@ -18,11 +18,9 @@ import com.intern.alexx.services.impl.MyPage;;
  */
 public interface MesterService {
 
-	Collection<Mester> searchMesterPage(Mester mester, int pageSize, int pageNumber);
 	
-	Collection<MyPage> searchMester(Mester mester, int pageSize, int pageNumber);
 	Page<Mester> searchMester(MesterSearchCriteria searchCriteria);
 	
+	//TODO add crud methods 
 	
-	Page<Mester> returnAllMesteri(Pageable pageable);
 }

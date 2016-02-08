@@ -5,7 +5,7 @@ package com.intern.alexx.repository;
 import java.util.List;
 
 import com.intern.alexx.model.Mester;
-import com.intern.alexx.repository.impl.MesterSearchCriteria;
+import com.intern.alexx.model.MesterSearchCriteria;
 /**
  * @author malex
  *

@@ -1,127 +1,89 @@
 package com.intern.alexx.repository.impl;
 
+
+import java.util.LinkedList;
+import java.util.List;
+
+import org.springframework.stereotype.Component;
+
+
+@Component
 public class GenerateSql {
 
-	private String sql;
+	private String sql=null;
 
 	public String createString(MesterSearchCriteria searchCriteria) {
 
 		StringBuilder query = new StringBuilder("SELECT mester.*  ");
-		String from = "FROM mester AS m ";
+		String from = "FROM mester AS m ", on, where, theOn=""  ;
 		StringBuilder join = new StringBuilder(" ");
-		String on1 = null, on2 = null, on3 = null;
-		StringBuilder on = new StringBuilder(" ");
-		String where1 = null, where2 = null, where3 = null, wm1 = null, wm2 = null, wm3 = null;
-		StringBuilder where = new StringBuilder(" WHERE ");
-		Boolean verify = false;
+		List<String> onList = new LinkedList<>();
+		List<String> whereList = new LinkedList<>(); 
+		 
 
 		if (searchCriteria.getFirstName() != null) {
-			wm1 = " m.first_name= ? ";
+			whereList.add(" m.first_name= ? ");
 		}
 		if (searchCriteria.getLastName() != null) {
-			wm2 = " m.last_name= ? ";
+			whereList.add(" m.last_name= ? ");
 		}
 		if (searchCriteria.getLocation() != null) {
-			wm3 = " m.location= ? ";
+			whereList.add(" m.location= ? ");
 		}
 
 		if (searchCriteria.getSpecialityName() != null) {
-
-			// query.append(", speciality.speciality_name ");
+			// query.append(", speciality.speciality_name ");			
 			join.append("JOIN mester_has_speciality as mhs JOIN speciality as s  ");
-			on1 = " (m.id = mhs.id_mester) AND (s.id = mhs.id_speciality) ";
-			where1 = " s.speciality_name= ? ";
+			onList.add(" (m.id = mhs.id_mester) AND (s.id = mhs.id_speciality) ");
+			whereList.add(" s.speciality_name= ? ");
 		}
 
 		if ((searchCriteria.getEmail() != null) || (searchCriteria.getPhoneNumber() != null)) {
 			join.append("JOIN contact AS c  ");
-			on2 = " m.id=c.id_mester ";
+			onList.add(" m.id=c.id_mester ");
 
-			if ((searchCriteria.getEmail() != null) && (searchCriteria.getPhoneNumber() == null)) {
+			if (searchCriteria.getEmail() != null) {
 				// query.append(", contact.email ");
-				where2 = " c.email= ? ";
+				whereList.add(" c.email= ? ");
 			}
 
-			if ((searchCriteria.getEmail() == null) && (searchCriteria.getPhoneNumber() != null)) {
+			if (searchCriteria.getPhoneNumber() != null) {
 				// query.append(", contact.numar_telefon ");
-				where2 = " c.numar_telefon= ? ";
+				whereList.add(" c.numar_telefon= ? ");
 			}
 
-			if ((searchCriteria.getEmail() != null) && (searchCriteria.getPhoneNumber() != null)) {
-				// query.append(", contact.email, contact.numar_telefon ");
-				where2 = " c.email= ? AND c.numar_telefon= ? ";
-			}
 		}
 
 		if ((searchCriteria.getRating() != null) || (searchCriteria.getPrice() != null)) {
 			join.append("JOIN review_mester AS rm  ");
-			on3 = " m.id=rm.id_mester ";
+			onList.add(" m.id=rm.id_mester ");
 
-			if ((searchCriteria.getRating() != null) && (searchCriteria.getPrice() == null)) {
+			if (searchCriteria.getRating() != null) {
 				// query.append(", review_mester.rating ");
-				where3 = " rm.rating= ? ";
+				whereList.add(" rm.rating= ? ");
 			}
 
-			if ((searchCriteria.getRating() == null) && (searchCriteria.getPrice() != null)) {
+			if (searchCriteria.getPrice() != null) {
 				// query.append(", review_mester.price ");
-				where3 = " rm.price= ? ";
+				whereList.add(" rm.price= ? ");
 			}
-			if ((searchCriteria.getRating() != null) && (searchCriteria.getPrice() != null)) {
-				// query.append(", review_mester.rating, review_mester.price ");
-				where3 = " rm.rating= ? AND rm.price= ? ";
-			}
+
 		}
 
-		if ((wm1 != null) || (wm2 != null) || (wm3 != null)) {
-			verify = true;
-			if ((wm1 != null) && (wm2 != null) && (wm3 != null)) {
-				where.append(wm1).append(" AND ").append(wm2).append(" AND ").append(wm3);
-			} else if ((wm1 != null) && (wm2 == null) && (wm3 == null)) {
-				where.append(wm1);
-			} else if ((wm1 == null) && (wm2 != null) && (wm3 == null)) {
-				where.append(wm2);
-			} else if ((wm1 == null) && (wm2 == null) && (wm3 != null)) {
-				where.append(wm3);
-			} else if ((wm1 != null) && (wm2 != null) && (wm3 == null)) {
-				where.append(wm1).append(" AND ").append(wm2);
-			} else if ((wm1 != null) && (wm2 == null) && (wm3 != null)) {
-				where.append(wm1).append(" AND ").append(wm3);
-			} else if ((wm1 == null) && (wm2 != null) && (wm3 != null)) {
-				where.append(wm2).append(" AND ").append(wm3);
+
+		
+			where = String.join(" AND ", whereList);
+			
+			if(onList.size() !=0){
+				theOn=" ON ";
 			}
+			on = String.join(" AND ", onList);
+		
+		if(whereList.size()!=0){		
+		sql = query.append(from).append(join).append(theOn).append(on).append(" WHERE ").append(where).append(" ;").toString();
 		}
-
-		if ((on1 != null) || (on2 != null) || (on3 != null)) {
-			on.append(" ON ");
-			if (verify) {
-				where.append(" AND ");
-			}
-			if ((on1 != null) && (on2 != null) && (on3 != null)) {
-				on.append(on1).append(" AND ").append(on2).append(" AND ").append(on3);
-				where.append(where1).append(" AND ").append(where2).append(" AND ").append(where3);
-			} else if ((on1 != null) && (on2 == null) && (on3 == null)) {
-				on.append(on1);
-				where.append(where1);
-			} else if ((on1 == null) && (on2 != null) && (on3 == null)) {
-				on.append(on2);
-				where.append(where2);
-			} else if ((on1 == null) && (on2 == null) && (on3 != null)) {
-				on.append(on3);
-				where.append(where3);
-			} else if ((on1 != null) && (on2 != null) && (on3 == null)) {
-				on.append(on1).append(" AND ").append(on2);
-				where.append(where1).append(" AND ").append(where2);
-			} else if ((on1 != null) && (on2 == null) && (on3 != null)) {
-				on.append(on1).append(" AND ").append(on3);
-				where.append(where1).append(" AND ").append(where3);
-			} else if ((on1 == null) && (on2 != null) && (on3 != null)) {
-				on.append(on2).append(" AND ").append(on3);
-				where.append(where2).append(" AND ").append(where3);
-			}
-		}
-
-		sql = query.append(from).append(join).append(on).append(where).append(" ;").toString();
-
+		else sql=query.append(from).append(" ;").toString();
+		
 		return sql;
 
 	}

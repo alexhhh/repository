@@ -18,8 +18,8 @@ import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Component;
 
 import com.intern.alexx.model.Mester;
+import com.intern.alexx.model.MesterSearchCriteria;
 import com.intern.alexx.repository.MesterRepository;
-import com.intern.alexx.repository.impl.MesterSearchCriteria;
 import com.intern.alexx.services.MesterService;
 
 /**
@@ -69,23 +69,7 @@ public class MesterServiceImp<Pageable> implements MesterService {
 		return content;
 	}
 
-	@Override
-	public Page<Mester> returnAllMesteri(org.springframework.data.domain.Pageable pageable) {
-		Page<Mester> newPage = null;
-		// long totalNumberOfElements;
-		// int pageSize;
-		// int nrOfPages;
-		// int pageNumber;
-		// List<Mester> content = mesterRepository.findAll();
-		//
-		// totalNumberOfElements = content.size();
-		// pageSize = pageable.getPageSize();
-		// pageNumber = pageable.getPageNumber();
-		// Page<Mester> newPage = new PageImpl<Mester>(content, pageable,
-		// totalNumberOfElements);
-		//
-		return newPage;
-	}
+ 
 
 	@Override
 	public Page<Mester> searchMester(MesterSearchCriteria searchCriteria) {
